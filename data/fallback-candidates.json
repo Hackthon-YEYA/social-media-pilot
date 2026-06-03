@@ -1,0 +1,255 @@
+[
+  {
+    "id": "c1",
+    "version": 1,
+    "title": "Cursor vs Claude Code — The Real Verdict",
+    "content": "Tested Cursor and Claude Code side by side for 2 weeks as a solo builder.\n\nCursor wins for: daily coding flow, tab completion, quick edits\nClaude Code wins for: big refactors, understanding legacy code\n\nBoth are $20/mo. The combo is unstoppable.\n\nIf I had to pick one? Cursor. Because I'm in the editor anyway.\n\n#AItools #SoloBuilder #IndieHacker",
+    "format": "thread-starter",
+    "judges": [
+      {
+        "judge": "Persona Judge",
+        "score": 9,
+        "comment": "Authentic voice, practical comparison format typical of AI tool reviewers. Resonates with the solo builder identity."
+      },
+      {
+        "judge": "Vertical Fit Judge",
+        "score": 9,
+        "comment": "Directly on-vertical: compares two AI coding tools. High relevance to the AI tools for solo builders niche."
+      },
+      {
+        "judge": "Platform Judge",
+        "score": 8,
+        "comment": "Good X/Twitter format. Short punchy lines work well. Could benefit from a stronger hook in the first line."
+      },
+      {
+        "judge": "Commercial Judge",
+        "score": 7,
+        "comment": "Mentions pricing which is useful for affiliate context. No direct CTA. Could add subtle sponsorship hook."
+      },
+      {
+        "judge": "Responsible AI Judge",
+        "score": 8,
+        "comment": "Claims are mostly grounded. '2 weeks' testing claim is unverifiable but low risk. No false performance stats."
+      }
+    ],
+    "confidenceMap": [
+      {
+        "claim": "Tested Cursor and Claude Code side by side for 2 weeks",
+        "level": "inferred",
+        "reason": "Duration is stated by the author but cannot be verified from source materials"
+      },
+      {
+        "claim": "Cursor wins for daily coding flow, tab completion, quick edits",
+        "level": "grounded",
+        "reason": "Consistent with source material describing Cursor's tab completion and VS Code-based flow"
+      },
+      {
+        "claim": "Claude Code wins for big refactors, understanding legacy code",
+        "level": "grounded",
+        "reason": "Source material explicitly mentions Claude Code excels at large-scale refactors and complex codebases"
+      },
+      {
+        "claim": "Both are $20/mo",
+        "level": "grounded",
+        "reason": "Both source materials confirm $20/month pricing for Pro tiers"
+      },
+      {
+        "claim": "The combo is unstoppable",
+        "level": "inferred",
+        "reason": "Qualitative claim based on combined use — no benchmark data to support 'unstoppable'"
+      }
+    ],
+    "recommendation": "publish",
+    "overallScore": 8.2
+  },
+  {
+    "id": "c2",
+    "version": 1,
+    "title": "Perplexity Saves 5 Hours/Week on Research",
+    "content": "Every solo builder wastes hours on research that should take minutes.\n\nPerplexity fixes this. Real-time answers with cited sources. No more 15-tab rabbit holes.\n\nI use it for:\n- Competitive analysis\n- Market validation\n- Quick fact checks\n\nIt's the best $20/mo I spend. Saves me 5+ hours every week.\n\n#Perplexity #AItools #ProductivityHack",
+    "format": "listicle",
+    "judges": [
+      {
+        "judge": "Persona Judge",
+        "score": 8,
+        "comment": "Fits the practical, tool-focused voice. Slightly generic but on-brand for an AI reviewer."
+      },
+      {
+        "judge": "Vertical Fit Judge",
+        "score": 8,
+        "comment": "Perplexity is a core AI tool. Research use case is directly relevant to solo builders."
+      },
+      {
+        "judge": "Platform Judge",
+        "score": 7,
+        "comment": "Decent format. The list structure works on X but the hook could be sharper."
+      },
+      {
+        "judge": "Commercial Judge",
+        "score": 6,
+        "comment": "Mentions pricing. Affiliate angle is possible. No clear conversion path in the post."
+      },
+      {
+        "judge": "Responsible AI Judge",
+        "score": 4,
+        "comment": "The '5+ hours every week' claim is a specific quantitative assertion with no evidence in source materials. This is an unsupported claim that could mislead followers."
+      }
+    ],
+    "confidenceMap": [
+      {
+        "claim": "Saves me 5+ hours every week",
+        "level": "unsupported",
+        "reason": "Specific time-saving figure not found in source materials. No benchmark or study cited. High risk of misleading followers."
+      },
+      {
+        "claim": "Real-time answers with cited sources",
+        "level": "grounded",
+        "reason": "Source material confirms Perplexity cites sources in real time"
+      },
+      {
+        "claim": "No more 15-tab rabbit holes",
+        "level": "inferred",
+        "reason": "Plausible benefit of consolidated search but not explicitly stated in source material"
+      },
+      {
+        "claim": "Best $20/mo I spend",
+        "level": "inferred",
+        "reason": "Subjective personal opinion — acceptable framing but not a verifiable fact"
+      },
+      {
+        "claim": "Used for competitive analysis, market validation, quick fact checks",
+        "level": "grounded",
+        "reason": "Source material explicitly mentions competitive analysis and market research as use cases"
+      }
+    ],
+    "recommendation": "revise",
+    "overallScore": 6.6
+  },
+  {
+    "id": "c3",
+    "version": 1,
+    "title": "The $60/mo AI Stack That Replaced My Team",
+    "content": "Running a one-person SaaS in 2026.\n\nMy entire AI stack costs $60/mo:\n- Cursor ($20): code faster\n- Claude Code ($20): tackle complex refactors  \n- Perplexity ($20): research in seconds\n\nThese three tools together replaced what used to take a 3-person team.\n\nSolo building has never been more viable.\n\n#SoloFounder #AIStack #IndieHacker",
+    "format": "personal-story",
+    "judges": [
+      {
+        "judge": "Persona Judge",
+        "score": 9,
+        "comment": "Strong personal narrative. The solo founder framing is perfect for this account's audience."
+      },
+      {
+        "judge": "Vertical Fit Judge",
+        "score": 9,
+        "comment": "Covers all three materials in one post. Excellent vertical alignment."
+      },
+      {
+        "judge": "Platform Judge",
+        "score": 9,
+        "comment": "Great X/Twitter format. Clean structure, relatable hook, good use of the stack format which performs well."
+      },
+      {
+        "judge": "Commercial Judge",
+        "score": 8,
+        "comment": "Strong affiliate setup — all three tools mentioned with prices. Easy to add affiliate links."
+      },
+      {
+        "judge": "Responsible AI Judge",
+        "score": 3,
+        "comment": "Replaced what used to take a 3-person team is an extraordinary claim. No evidence in source materials. This is a classic AI hype statement that erodes credibility."
+      }
+    ],
+    "confidenceMap": [
+      {
+        "claim": "Replaced what used to take a 3-person team",
+        "level": "unsupported",
+        "reason": "Extraordinary productivity claim with no supporting evidence in source materials. Risk of being seen as AI hype."
+      },
+      {
+        "claim": "$60/mo total for three tools",
+        "level": "grounded",
+        "reason": "All three source materials confirm $20/month pricing, totaling $60"
+      },
+      {
+        "claim": "Cursor helps code faster",
+        "level": "grounded",
+        "reason": "Source material supports this — tab completion and AI assistance speed up coding"
+      },
+      {
+        "claim": "Claude Code handles complex refactors",
+        "level": "grounded",
+        "reason": "Source material explicitly states Claude Code excels at large-scale refactors"
+      },
+      {
+        "claim": "Solo building has never been more viable",
+        "level": "inferred",
+        "reason": "Trend claim — generally supported by AI tooling growth but not proven by these materials alone"
+      }
+    ],
+    "recommendation": "revise",
+    "overallScore": 7.6
+  },
+  {
+    "id": "c3-v2",
+    "parentId": "c3",
+    "version": 2,
+    "title": "The $60/mo AI Stack Solo Builders Actually Use",
+    "content": "Running a one-person SaaS in 2026.\n\nMy entire AI stack costs $60/mo:\n- Cursor ($20): tab completion + in-editor AI chat\n- Claude Code ($20): large refactors without losing context  \n- Perplexity ($20): research with cited sources, no rabbit holes\n\nEach tool has a clear job. No overlap. No bloat.\n\nSolo building has never felt this focused.\n\n#SoloFounder #AIStack #IndieHacker",
+    "format": "personal-story",
+    "judges": [
+      {
+        "judge": "Persona Judge",
+        "score": 9,
+        "comment": "Strong personal narrative. Authentic and specific — describes features, not vague productivity claims."
+      },
+      {
+        "judge": "Vertical Fit Judge",
+        "score": 9,
+        "comment": "All three tools covered. Vertical alignment is excellent."
+      },
+      {
+        "judge": "Platform Judge",
+        "score": 9,
+        "comment": "Clean format, good hook, X-native structure."
+      },
+      {
+        "judge": "Commercial Judge",
+        "score": 8,
+        "comment": "All three tools with prices — strong affiliate setup."
+      },
+      {
+        "judge": "Responsible AI Judge",
+        "score": 9,
+        "comment": "Unsupported team-replacement claim removed. All remaining claims are grounded in source materials."
+      }
+    ],
+    "confidenceMap": [
+      {
+        "claim": "$60/mo total for three tools",
+        "level": "grounded",
+        "reason": "All three source materials confirm $20/month pricing"
+      },
+      {
+        "claim": "Cursor: tab completion + in-editor AI chat",
+        "level": "grounded",
+        "reason": "Source material explicitly describes these features"
+      },
+      {
+        "claim": "Claude Code: large refactors without losing context",
+        "level": "grounded",
+        "reason": "Source material confirms Claude Code excels at large-scale refactors and complex codebases"
+      },
+      {
+        "claim": "Perplexity: research with cited sources",
+        "level": "grounded",
+        "reason": "Source material confirms Perplexity cites sources in real time"
+      },
+      {
+        "claim": "Solo building has never felt this focused",
+        "level": "inferred",
+        "reason": "Personal sentiment — acceptable subjective framing"
+      }
+    ],
+    "recommendation": "publish",
+    "overallScore": 8.8
+  }
+]

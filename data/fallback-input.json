@@ -1,0 +1,33 @@
+{
+  "accountSpec": {
+    "name": "AI Tool Reviewer for Solo Builders",
+    "vertical": "AI tools for solo builders",
+    "audience": "indie hackers, solo founders, AI tool users",
+    "platform": "x",
+    "commercialGoal": "Attract AI SaaS sponsorships and affiliate opportunities",
+    "tone": "direct, practical, honest",
+    "contentPillars": [
+      "AI tool reviews",
+      "solo builder productivity",
+      "AI workflow tips",
+      "tool comparisons"
+    ]
+  },
+  "materials": [
+    {
+      "id": "m1",
+      "title": "Cursor AI Editor",
+      "content": "Cursor is an AI-first code editor built on VS Code. It features tab completion, a chat interface for code generation, and the ability to edit multiple files at once. Pricing starts at $20/month for Pro. Many solo builders report it significantly speeds up development, particularly for boilerplate and refactoring tasks."
+    },
+    {
+      "id": "m2",
+      "title": "Claude Code",
+      "content": "Claude Code is Anthropic's agentic coding tool that runs in the terminal. It can read, write, and execute code autonomously. It's included with Claude Pro at $20/month. It excels at large-scale refactors and understanding complex codebases. Some users report it can make unexpected changes if instructions are ambiguous."
+    },
+    {
+      "id": "m3",
+      "title": "Perplexity AI",
+      "content": "Perplexity is an AI-powered search engine that cites sources in real time. Pro costs $20/month. It's particularly useful for research-heavy tasks like competitive analysis and market research. Solo builders use it to quickly validate ideas without drowning in browser tabs."
+    }
+  ]
+}
