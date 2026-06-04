@@ -55,6 +55,8 @@ export type GenerateResponse = {
 };
 
 export type RewriteRequest = {
+  accountSpec: AccountSpec;
+  materials: SourceMaterial[];
   candidate: Candidate;
   steeringInstruction: string;
 };

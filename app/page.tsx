@@ -44,7 +44,7 @@ export default function Home() {
       const res = await fetch("/api/rewrite", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ candidate: selectedCandidate, steeringInstruction: instruction }),
+        body: JSON.stringify({ accountSpec, materials, candidate: selectedCandidate, steeringInstruction: instruction }),
       });
       const data = await res.json();
       const newCandidate: Candidate = data.candidate;

@@ -24,6 +24,10 @@ ${materials.map((m) => `### ${m.title}\n${m.content}`).join("\n\n")}
 
 Generate exactly 3 candidate posts for ${accountSpec.platform}. Each must be grounded in the source materials.
 
+Each candidate must be a complete, self-contained post. Do not write teasers, previews, or "Part 1 of N" stubs.
+If the format is "thread-starter", write the full thread content (all parts) as one continuous post, not just the opening hook.
+The content should be substantive — at least 150 characters of useful information, not just a headline or a call-to-action.
+
 Return a JSON array of candidates with this exact shape:
 [
   {
@@ -129,10 +133,21 @@ Original post (Version ${candidate.version}):
 Title: ${candidate.title}
 Content: ${candidate.content}
 
+Judge Feedback (Content Thunderdome):
+${candidate.judges.map((j) => `- ${j.judge}: ${j.score}/10 — "${j.comment}"`).join("\n")}
+
+Confidence Map:
+${candidate.confidenceMap.map((ci) => `- [${ci.level}] "${ci.claim}" — ${ci.reason}`).join("\n")}
+
 Operator steering instruction:
 ${steeringInstruction}
 
-Rewrite the post following the instruction while keeping it grounded in facts and appropriate for the account. Return JSON:
+Rules:
+- Fix or remove claims marked as "unsupported" in the confidence map. Do not introduce new claims that are not grounded in the source materials.
+- Address low-scoring dimensions from the judge feedback where possible.
+- Follow the operator's steering instruction.
+
+Rewrite the post following these rules while keeping it grounded in facts and appropriate for the account. Return JSON:
 {
   "title": "new title",
   "content": "rewritten content",
