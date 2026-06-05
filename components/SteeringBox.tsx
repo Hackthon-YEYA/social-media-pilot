@@ -17,6 +17,7 @@ const JUDGE_SUGGESTIONS: Record<string, string> = {
   "Platform Judge": "Sharpen the hook and optimize the format for X/Twitter",
   "Commercial Judge": "Add a subtle commercial hook that attracts AI SaaS sponsors",
   "Responsible AI Judge": "Remove or ground all unsupported claims",
+  "Anti-AI Judge": "Remove transition words, cut the conclusion, replace complex vocabulary with plain language",
 };
 
 const GENERIC_SUGGESTIONS = [

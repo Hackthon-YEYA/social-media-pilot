@@ -1,6 +1,16 @@
 import type { AccountSpec, SourceMaterial, Candidate } from "./schemas";
 import type { LLMMessage } from "./llm";
 
+/**
+ * Anti-AI writing rules applied to both generation and rewrite prompts.
+ * Goal: produce content that sounds like a real person wrote it, not a language model.
+ */
+const ANTI_AI_WRITING_RULES = `Anti-AI writing rules (apply strictly):
+- Use only the most basic conjunctions and transitions: "and", "but", "so", "because", "then". Never use: Furthermore, Moreover, Additionally, Consequently, Subsequently, Notably, In conclusion, In summary, As a result, It is worth noting, It is important to highlight.
+- Use plain everyday vocabulary. Never use: leverage, utilize, delve, robust, comprehensive, streamline, facilitate, paradigm, transformative, game-changing, cutting-edge, revolutionize, empower, seamlessly.
+- Let the logic flow from sentence content, not from connective filler. If two sentences are related, place them next to each other — do not glue them with a transition phrase.
+- Do not write a conclusion or summary paragraph at the end. Stop when the point is made.`;
+
 export function buildGenerateCandidatesPrompt(
   accountSpec: AccountSpec,
   materials: SourceMaterial[]
@@ -28,6 +38,8 @@ Each candidate must be a complete, self-contained post. Do not write teasers, pr
 If the format is "thread-starter", write the full thread content (all parts) as one continuous post, not just the opening hook.
 The content should be substantive — at least 150 characters of useful information, not just a headline or a call-to-action.
 
+${ANTI_AI_WRITING_RULES}
+
 Return a JSON array of candidates with this exact shape:
 [
   {
@@ -47,7 +59,7 @@ export function buildJudgePrompt(
   return [
     {
       role: "user",
-      content: `You are a content quality judge. Evaluate this social media post across 5 dimensions for the given account spec.
+      content: `You are a content quality judge. Evaluate this social media post across 6 dimensions for the given account spec.
 
 Account:
 - Name: ${accountSpec.name}
@@ -63,6 +75,14 @@ Content: ${candidate.content}
 
 Score each dimension 1-10 and provide a brief comment. Also provide a final recommendation.
 
+Anti-AI Judge rubric — flag any of the following patterns and lower the score accordingly:
+- Formal transition words: Furthermore, Moreover, Additionally, Consequently, Subsequently, Notably, In conclusion, In summary, As a result
+- Corporate/AI vocabulary: leverage, utilize, delve, robust, comprehensive, streamline, facilitate, paradigm, transformative, game-changing
+- A concluding summary paragraph that restates what was already said
+- Overly polished sentence structure with no variation — reads like a generated document, not a real person
+- Absence of any personal or specific detail that only a real practitioner would include
+If none of these patterns are present, score 9-10.
+
 Return JSON with this exact shape:
 {
   "judges": [
@@ -70,7 +90,8 @@ Return JSON with this exact shape:
     { "judge": "Vertical Fit Judge", "score": 7, "comment": "..." },
     { "judge": "Platform Judge", "score": 9, "comment": "..." },
     { "judge": "Commercial Judge", "score": 6, "comment": "..." },
-    { "judge": "Responsible AI Judge", "score": 8, "comment": "..." }
+    { "judge": "Responsible AI Judge", "score": 8, "comment": "..." },
+    { "judge": "Anti-AI Judge", "score": 7, "comment": "Cite the specific words or patterns that triggered the score, e.g. 'Uses furthermore and a summary paragraph'" }
   ],
   "recommendation": "publish" | "revise" | "reject",
   "overallScore": 7.6
@@ -146,6 +167,7 @@ Rules:
 - Fix or remove claims marked as "unsupported" in the confidence map. Do not introduce new claims that are not grounded in the source materials.
 - Address low-scoring dimensions from the judge feedback where possible.
 - Follow the operator's steering instruction.
+- ${ANTI_AI_WRITING_RULES}
 
 Rewrite the post following these rules while keeping it grounded in facts and appropriate for the account. Return JSON:
 {

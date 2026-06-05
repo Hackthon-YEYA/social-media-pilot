@@ -30,6 +30,11 @@
         "judge": "Responsible AI Judge",
         "score": 8,
         "comment": "Claims are mostly grounded. '2 weeks' testing claim is unverifiable but low risk. No false performance stats."
+      },
+      {
+        "judge": "Anti-AI Judge",
+        "score": 8,
+        "comment": "Punchy, short sentences. No formal transition words. Personal first-person framing feels real. Minor: 'unstoppable' edges toward hype language."
       }
     ],
     "confidenceMap": [
@@ -93,6 +98,11 @@
         "judge": "Responsible AI Judge",
         "score": 4,
         "comment": "The '5+ hours every week' claim is a specific quantitative assertion with no evidence in source materials. This is an unsupported claim that could mislead followers."
+      },
+      {
+        "judge": "Anti-AI Judge",
+        "score": 6,
+        "comment": "Opening line 'Every solo builder wastes hours on research that should take minutes' is generic AI-style framing. 'fixes this' is a weak transition. No summary paragraph, which is good."
       }
     ],
     "confidenceMap": [
@@ -156,6 +166,11 @@
         "judge": "Responsible AI Judge",
         "score": 3,
         "comment": "Replaced what used to take a 3-person team is an extraordinary claim. No evidence in source materials. This is a classic AI hype statement that erodes credibility."
+      },
+      {
+        "judge": "Anti-AI Judge",
+        "score": 4,
+        "comment": "Uses 'unstoppable' and 'has never been more viable' — AI hype patterns. The structure (intro → bullet list → closing motto) is a textbook LLM format. Sounds assembled, not written."
       }
     ],
     "confidenceMap": [
@@ -220,6 +235,11 @@
         "judge": "Responsible AI Judge",
         "score": 9,
         "comment": "Unsupported team-replacement claim removed. All remaining claims are grounded in source materials."
+      },
+      {
+        "judge": "Anti-AI Judge",
+        "score": 9,
+        "comment": "Short declarative sentences. 'No overlap. No bloat.' is punchy and human. No formal transitions, no summary paragraph. 'has never felt this focused' is personal and specific — not generic hype."
       }
     ],
     "confidenceMap": [
