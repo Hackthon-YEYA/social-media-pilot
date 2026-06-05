@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { Copy, Check } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { JudgePanel } from "@/components/JudgePanel";
 import { ConfidenceMap } from "@/components/ConfidenceMap";
@@ -13,16 +15,41 @@ type Props = {
 };
 
 export function CandidateDetail({ candidate, onRewrite, isRewriting }: Props) {
+  const [copied, setCopied] = useState(false);
+
+  async function handleCopy() {
+    await navigator.clipboard.writeText(candidate.content);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+
   return (
     <div className="flex flex-col gap-5 h-full overflow-y-auto">
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <h2 className="text-base font-semibold text-slate-100">{candidate.title}</h2>
+          <h2 className="text-base font-semibold text-slate-100 flex-1">{candidate.title}</h2>
           {candidate.version > 1 && (
             <span className="text-xs text-blue-400 bg-blue-500/10 border border-blue-500/30 rounded px-2 py-0.5">
               v{candidate.version}
             </span>
           )}
+          <button
+            onClick={handleCopy}
+            title="Copy post content"
+            className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-100 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded px-2 py-1 transition-colors"
+          >
+            {copied ? (
+              <>
+                <Check size={12} className="text-emerald-400" />
+                <span className="text-emerald-400">Copied</span>
+              </>
+            ) : (
+              <>
+                <Copy size={12} />
+                <span>Copy</span>
+              </>
+            )}
+          </button>
         </div>
         <p className="text-sm text-slate-300 whitespace-pre-wrap leading-relaxed bg-slate-800 rounded-lg p-4 border border-slate-700">
           {candidate.content}

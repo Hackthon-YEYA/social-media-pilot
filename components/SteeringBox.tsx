@@ -11,13 +11,73 @@ type Props = {
   isLoading: boolean;
 };
 
+const JUDGE_SUGGESTIONS: Record<string, string> = {
+  "Persona Judge": "Make the voice sound more authentic and personal",
+  "Vertical Fit Judge": "Strengthen the focus on AI tools for solo builders",
+  "Platform Judge": "Sharpen the hook and optimize the format for X/Twitter",
+  "Commercial Judge": "Add a subtle commercial hook that attracts AI SaaS sponsors",
+  "Responsible AI Judge": "Remove or ground all unsupported claims",
+};
+
+const GENERIC_SUGGESTIONS = [
+  "Make it sound more like a real solo builder experience",
+  "Reduce the tool-list feel — add a narrative arc",
+  "Add one concrete, specific use case",
+  "Cut it down — make every word earn its place",
+];
+
+/** Derive up to 4 contextual suggestions from the candidate's judges + confidence map */
+function buildSuggestions(candidate: Candidate): string[] {
+  const suggestions: string[] = [];
+
+  // 1. Unsupported claims → highest priority fix
+  const unsupportedClaims = candidate.confidenceMap.filter((c) => c.level === "unsupported");
+  if (unsupportedClaims.length > 0) {
+    const example = unsupportedClaims[0].claim;
+    const truncated = example.length > 50 ? example.slice(0, 50) + "…" : example;
+    suggestions.push(`Remove the unsupported claim: "${truncated}"`);
+  }
+
+  // 2. Inferred claims → suggest grounding
+  const inferredClaims = candidate.confidenceMap.filter((c) => c.level === "inferred");
+  if (inferredClaims.length > 1 && suggestions.length < 3) {
+    suggestions.push("Replace inferred claims with specific, grounded examples from the source material");
+  }
+
+  // 3. Lowest-scoring judge (score < 8) → targeted fix
+  const sortedJudges = [...candidate.judges].sort((a, b) => a.score - b.score);
+  for (const judge of sortedJudges) {
+    if (judge.score < 8 && suggestions.length < 3) {
+      const suggestion = JUDGE_SUGGESTIONS[judge.judge];
+      if (suggestion && !suggestions.includes(suggestion)) {
+        suggestions.push(suggestion);
+      }
+    }
+  }
+
+  // 4. Fill remaining slots with generic suggestions not already present
+  for (const generic of GENERIC_SUGGESTIONS) {
+    if (suggestions.length >= 4) break;
+    if (!suggestions.includes(generic)) {
+      suggestions.push(generic);
+    }
+  }
+
+  return suggestions.slice(0, 4);
+}
+
 export function SteeringBox({ candidate, onRewrite, isLoading }: Props) {
   const [instruction, setInstruction] = useState("");
+  const suggestions = buildSuggestions(candidate);
 
   function handleRewrite() {
     if (!instruction.trim()) return;
     onRewrite(instruction.trim());
     setInstruction("");
+  }
+
+  function handleChip(text: string) {
+    setInstruction(text);
   }
 
   return (
@@ -30,10 +90,32 @@ export function SteeringBox({ candidate, onRewrite, isLoading }: Props) {
           This is Version {candidate.version} — rewritten from an earlier version
         </div>
       )}
+
+      {/* Suggestion chips */}
+      <div className="flex flex-col gap-1.5">
+        <p className="text-xs text-slate-500">Suggested fixes based on judge feedback:</p>
+        <div className="flex flex-wrap gap-1.5">
+          {suggestions.map((s) => (
+            <button
+              key={s}
+              onClick={() => handleChip(s)}
+              disabled={isLoading}
+              className={`text-left text-xs px-2.5 py-1.5 rounded-md border transition-colors ${
+                instruction === s
+                  ? "border-violet-500 bg-violet-500/20 text-violet-200"
+                  : "border-slate-600 bg-slate-800 text-slate-400 hover:border-slate-500 hover:text-slate-200"
+              }`}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <Textarea
         className="bg-slate-800 border-slate-700 text-slate-100 text-sm resize-none"
         rows={3}
-        placeholder='e.g. "Make it sound more like a real solo builder experience" or "Remove the unsupported claims"'
+        placeholder="Or type a custom instruction…"
         value={instruction}
         onChange={(e) => setInstruction(e.target.value)}
       />
