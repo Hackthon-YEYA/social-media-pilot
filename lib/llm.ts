@@ -1,6 +1,11 @@
-const LLM_BASE_URL = process.env.LLM_BASE_URL || "https://api.openai.com/v1";
-const LLM_API_KEY = process.env.LLM_API_KEY || "";
-const LLM_MODEL = process.env.LLM_MODEL || "gpt-4o";
+import OpenAI from "openai";
+
+const LLM_MODEL = process.env.LLM_MODEL || "deepseek/deepseek-v4-pro";
+
+const client = new OpenAI({
+  apiKey: process.env.CF_AIG_TOKEN,
+  baseURL: "https://gateway.ai.cloudflare.com/v1/bc6f3ab61d8bd82e5407bc6a53a57a8e/demo/compat",
+});
 
 export type LLMMessage = {
   role: "system" | "user" | "assistant";
@@ -8,25 +13,13 @@ export type LLMMessage = {
 };
 
 export async function callLLM(messages: LLMMessage[]): Promise<string> {
-  const response = await fetch(`${LLM_BASE_URL}/chat/completions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${LLM_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: LLM_MODEL,
-      messages,
-      temperature: 0.7,
-    }),
+  const response = await client.chat.completions.create({
+    model: LLM_MODEL,
+    messages,
+    temperature: 0.7,
   });
 
-  if (!response.ok) {
-    throw new Error(`LLM API error: ${response.status} ${response.statusText}`);
-  }
-
-  const data = await response.json();
-  const content = data.choices?.[0]?.message?.content;
+  const content = response.choices[0]?.message?.content;
 
   if (!content) {
     throw new Error("LLM returned empty content");
