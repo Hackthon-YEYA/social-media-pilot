@@ -21,5 +21,8 @@
   },
   "observability": {
     "enabled": true
+  },
+  "vars": {
+    "LLM_MODEL": "deepseek/deepseek-v4-pro"
   }
 }
