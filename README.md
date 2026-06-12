@@ -2,6 +2,8 @@
 
 > LLM-as-a-Judge for Vertical Content Operations
 
+## 🔗 [social-media-pilot.15010972518.workers.dev](https://social-media-pilot.15010972518.workers.dev/)
+
 **AI made content cheap. It did not make content trustworthy.**
 
 Social Media Pilot turns a vertical account spec and raw materials into social content candidates, then judges each candidate across Persona, Vertical Fit, Platform, Commercial, and Responsible AI dimensions — before a human operator decides to publish, revise, or reject.
@@ -36,37 +38,34 @@ Generation is easy. Evaluation is hard. We use separate judge prompts for each q
 
 - **Frontend / Backend**: Next.js 16 + TypeScript (App Router)
 - **UI**: Tailwind CSS + shadcn/ui
-- **LLM**: OpenAI-compatible API (configurable endpoint)
+- **LLM**: DeepSeek V4 Pro via Cloudflare AI Gateway
+- **Deployment**: Cloudflare Workers
 - **Storage**: In-memory + JSON fallback data
 
-## How to Run
+## How to Run Locally
 
-1. Copy the env example:
-
-```bash
-cp .env.example .env.local
-```
-
-2. Fill in your LLM credentials in `.env.local`:
-
-```
-LLM_BASE_URL=https://api.openai.com/v1
-LLM_API_KEY=your_api_key_here
-LLM_MODEL=gpt-4o
-```
-
-Any OpenAI-compatible endpoint works (OpenAI, OpenRouter, local LLM gateway, etc.).
-
-3. Install and run:
+1. Install dependencies:
 
 ```bash
 npm install
+```
+
+2. Set up your environment in `.env`:
+
+```
+CF_AIG_TOKEN=your_cloudflare_ai_gateway_token
+LLM_MODEL=deepseek/deepseek-v4-pro
+```
+
+3. Run:
+
+```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-> **No API key?** The app automatically falls back to pre-built demo data so you can explore the full UI and demo flow without any LLM calls.
+> **No token?** The app automatically falls back to pre-built demo data so you can explore the full UI and demo flow without any LLM calls.
 
 ## Demo Flow
 
@@ -101,7 +100,7 @@ components/
   SteeringBox.tsx
 
 lib/
-  llm.ts                 # OpenAI-compatible adapter
+  llm.ts                 # OpenAI SDK adapter via Cloudflare AI Gateway
   prompts.ts             # Prompt builder functions
   schemas.ts             # TypeScript types
   demo-data.ts           # Default spec and fallback data
