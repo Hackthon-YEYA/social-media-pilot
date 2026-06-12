@@ -2,10 +2,17 @@ import OpenAI from "openai";
 
 const LLM_MODEL = process.env.LLM_MODEL || "deepseek/deepseek-v4-pro";
 
-const client = new OpenAI({
-  apiKey: process.env.CF_AIG_TOKEN,
-  baseURL: "https://gateway.ai.cloudflare.com/v1/bc6f3ab61d8bd82e5407bc6a53a57a8e/demo/compat",
-});
+let client: OpenAI | null = null;
+
+function getClient(): OpenAI {
+  if (!client) {
+    client = new OpenAI({
+      apiKey: process.env.CF_AIG_TOKEN,
+      baseURL: "https://gateway.ai.cloudflare.com/v1/bc6f3ab61d8bd82e5407bc6a53a57a8e/demo/compat",
+    });
+  }
+  return client;
+}
 
 export type LLMMessage = {
   role: "system" | "user" | "assistant";
@@ -13,7 +20,7 @@ export type LLMMessage = {
 };
 
 export async function callLLM(messages: LLMMessage[]): Promise<string> {
-  const response = await client.chat.completions.create({
+  const response = await getClient().chat.completions.create({
     model: LLM_MODEL,
     messages,
     temperature: 0.7,
